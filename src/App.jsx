@@ -7,12 +7,24 @@ function App() {
       id: 2,
       image: 'https://i.pravatar.cc/150?img=2',
     },
+    {
+      id: 3,
+      image: 'https://i.pravatar.cc/150?img=3',
+    },
+    {
+      id: 4,
+      image: 'https://i.pravatar.cc/150?img=10',
+    },
+    {
+      id: 1,
+      image: 'https://i.pravatar.cc/150?img=11',
+    },
   ]);
 
   const addUser = () => {
     const newUser = {
-      id: users.length + 2,
-      image: `https://i.pravatar.cc/150?img=${users.length + 1}`,
+      id: users.length +2,
+      image: `https://i.pravatar.cc/150?img=${users.length + 2}`,
     };
     setUsers([...users, newUser]);
   };
@@ -20,6 +32,7 @@ function App() {
   return (
     <Router>
       <Layout users={users} addUser={addUser} />
+      
     </Router>
   );
 }

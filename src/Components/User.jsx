@@ -9,7 +9,7 @@ const User = ({ users }) => {
           <NavLink
             to={`/user/${user.id}`} 
             className="flex flex-col items-center"
-            activeclassname="text-blue-500" 
+            activeclassname="text-gray-500" 
           >
             <img
               src={user.image}
