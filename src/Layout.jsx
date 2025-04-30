@@ -9,7 +9,6 @@ import { Navigate } from 'react-router-dom';
 import Sidebar from './Components/Sidebar/Sidebar';
 import BottomNavbar from './Components/Sidebar/BottomNavbar';
 import Navbar from './Components/Navbar';
-import MainContent from './Components/MainContent';
 import Logoc from './Components/Logoc';
 import User from './Components/User';
 import AdminPannel from './Components/AdminPannel';
@@ -28,7 +27,8 @@ function Layout({ users, addUser }) {
       </div>
 
       <div className="hidden md:grid grid-cols-[0.1fr_0.2fr_3fr] divide-x divide-gray-900">
-        <div className="flex flex-col divide-y divide-gray-900 bg-black">
+       
+        <div className="flex flex-col divide-y divide-gray-900 bg-black px-2">
           <div className="h-[7%]">
             <Logoc />
           </div>
@@ -41,6 +41,7 @@ function Layout({ users, addUser }) {
             </div>
           </div>
         </div>
+
         <div className="flex flex-col divide-y divide-gray-900">
           <div className="h-[7%] flex-shrink-0">
             <AdminPannel />
@@ -50,7 +51,6 @@ function Layout({ users, addUser }) {
           </div>
         </div>
         <div className="flex flex-col divide-y divide-gray-900 overflow-hidden">
-          
           <div className="flex flex-row bg-black px-2 md:px-4 h-[7%] divide-x divide-gray-900 font-medium items-stretch">
             <Link
               to="/analytics"
@@ -60,82 +60,105 @@ function Layout({ users, addUser }) {
             </Link>
             <Link
               to="/activity"
-              className="w-[15%] md:w-[10%] px-4 md:px-8 flex items-center justify-center hover:text-gray-300 text-xs md:text-base lg:text-lg"
+              className="w-[15%] md:w-[10%]lg:w-[15%] px-4 md:px-8 flex items-center justify-center hover:text-gray-300 text-xs md:text-base lg:text-lg"
             >
               Activity
             </Link>
             <Link
               to="/logout"
-              className="w-[15%] md:w-[8%] px-4 md:px-8 flex items-center justify-center hover:text-gray-300 text-xs md:text-base lg:text-lg"
+              className="w-[15%] md:w-[8%] lg:w-[10%] px-4 md:px-8 flex items-center justify-center hover:text-gray-300 text-xs md:text-base lg:text-lg"
             >
               Logout
             </Link>
           </div>
 
           {/* Second Bar */}
-          <div className="flex flex-row bg-black px-2 md:px-4 h-[7%] divide-x divide-gray-900 font-medium items-stretch">
-            <Link
-              to="/analytics"
-              className={`w-[20%] md:w-[20%] sm:w-[25%] lg:w-[10%] p-2 md:p-4 flex items-center ${
-                location.pathname === '/analytics' ? 'text-white' : 'text-gray-500'
-              } hover:text-gray-300 text-xs md:text-base lg:text-lg`}
-            >
-              Overview
-            </Link>
+          {location.pathname.includes('/user/') ? (
+  <div className="flex flex-row bg-black px-2 md:px-4 h-[7%] divide-x divide-gray-900 font-medium items-stretch">
+    <Link
+      to="/analytics"
+      className={`w-[20%] md:w-[20%] sm:w-[25%] lg:w-[10%] p-2 md:p-4 flex items-center ${location.pathname === '/analytics' ? 'text-white' : 'text-gray-500'} hover:text-gray-300 text-xs md:text-base lg:text-lg`}
+    >
+      Overview
+    </Link>
 
-            <Link
-              to="/demographics"
-              className={`w-[35%] md:w-[25%] sm:w-[45%] lg:w-[15%] py-2 md:py-4 px-4 md:px-8 flex items-center ${
-                location.pathname === '/demographics' ? 'text-white' : 'text-gray-500'
-              } hover:text-gray-300 text-xs md:text-base lg:text-lg`}
-            >
-              Portfolio
-            </Link>
+    <Link to={`/User/${users[2]?.id}`}
+      className={`w-[35%] md:w-[25%] sm:w-[45%] lg:w-[15%] py-2 md:py-4 px-4 md:px-8 flex items-center ${location.pathname === '/User/${users[2]?.id}' ? 'text-white' : 'text-gray-500'} hover:text-gray-300 text-xs md:text-base lg:text-lg`}
+    >
+      Portfolio
+    </Link>
 
-            <Link
-              to="#"
-              className="w-[35%] md:w-[37%] sm:w-[5%] lg:w-[15%] py-2 md:py-4 px-4 md:px-8 flex items-center text-gray-500 hover:text-gray-300 text-xs md:text-base lg:text-lg"
-            >
-              Experience
-            </Link>
-            <Link
-              to="#"
-              className="w-[35%] md:w-[37%] sm:w-[5%] lg:w-[15%] py-2 md:py-4 px-4 md:px-8 flex items-center text-gray-500 hover:text-gray-300 text-xs md:text-base lg:text-lg"
-            >
-              Media
-            </Link>
-            <Link
-              to="#"
-              className="w-[35%] md:w-[37%] sm:w-[5%] lg:w-[70%] py-2 md:py-4 px-4 md:px-8 flex items-center text-gray-500 hover:text-gray-300 text-xs md:text-base lg:text-lg"
-            >
-            
-            </Link>
-            <Link
-              to="/more"
-              className="w-[10%] md:w-[6%] lg:w-[8%] px-4 md:px-8 py-2 md:py-4 flex items-center hover:text-gray-300 text-xs md:text-base lg:text-lg"
-            >
-              More
-            </Link>
-          </div>
+    <Link to={`/User/${users[0]?.id}`}
+      className={`w-[35%] md:w-[37%] sm:w-[5%] lg:w-[15%] py-2 md:py-4 px-4 md:px-8 flex items-center  text-gray-500 hover:text-gray-300 text-xs md:text-base lg:text-lg
+        ${location.pathname === '/User/${users[0]?.id}' ? 'text-white' : 'text-gray-500'}`
+      }
+    >
+      Experience
+    </Link>
+    <Link to={`/User/${users[1]?.id}`}
+      className={`w-[35%] md:w-[37%] sm:w-[5%] lg:w-[15%] py-2 md:py-4 px-4 md:px-8 flex items-center  text-gray-500 hover:text-gray-300 text-xs md:text-base lg:text-lg
+        ${location.pathname === '/User/${users[1]?.id}' ? 'text-white' : 'text-gray-500'}`
+      }
+    >
+      Media
+    </Link>
+    <Link
+      to="#"
+      className="w-[35%] md:w-[37%] sm:w-[5%] lg:w-[70%] py-2 md:py-4 px-4 md:px-8 flex items-center text-gray-500 hover:text-gray-300 text-xs md:text-base lg:text-lg"
+    ></Link>
+    <Link
+      to="/more"
+      className="w-[10%] md:w-[6%] lg:w-[8%] px-4 md:px-8 py-2 md:py-4 flex items-center hover:text-gray-300 text-xs md:text-base lg:text-lg"
+    >
+      More
+    </Link>
+  </div>
+) : (
+  <div className=" flex flex-row bg-black px-2 md:px-4 h-[5%] divide-x divide-gray-900 font-medium items-stretch">
+    <Link
+      to="/analytics"
+      className={`w-[15%] md:w-[25%] sm:w-[30%] lg:w-[18%] p-2 md:p-4 flex items-center ${location.pathname === '/analytics' ? 'text-white' : 'text-gray-500'} hover:text-gray-300 text-xs md:text-base lg:text-lg`}
+    >
+      Overview
+    </Link>
 
-          <div className="flex-1 overflow-auto p-4 h-screen">
-          <Routes>
-  <Route path="/analytics" element={<Overview />} />
-  <Route path="/User/:userid" element={<UserProfile />} />
-  <Route path="*" element={<Navigate to="/analytics" replace />} />
-</Routes>
+    <Link
+      to="/demographics"
+      className={`w-[12%] md:w-[30%] sm:w-[32%] lg:w-[20%] p-2 md:p-4 flex items-center ${location.pathname === '/demographics' ? 'text-white' : 'text-gray-500'} hover:text-gray-300 text-xs md:text-base lg:text-lg`}
+    >
+      Demographic
+    </Link>
+
+    <Link
+      to="#"
+      className="w-[35%] md:w-[37%] sm:w-[5%] lg:w-[65%] py-2 md:py-4 px-4 md:px-8 flex items-center text-gray-500 hover:text-gray-300 text-xs md:text-base lg:text-lg"
+    ></Link>
+    <Link
+      to="#"
+      className="w-[35%] md:w-[37%] sm:w-[5%] lg:w-[10%] py-2 md:py-4 px-4 md:px-8 flex items-center text-white hover:text-gray-300 text-xs md:text-base lg:text-lg"
+    >
+      More
+    </Link>
+  </div>
+)}
 
 
+          <div className="flex-1 overflow-hidden p-4 h-screen bg-dark">
+            <Routes>
+              <Route path="/analytics" element={<Overview />} />
+              <Route path="/User/:userid" element={<UserProfile />} />
+              <Route path="*" element={<Navigate to="/analytics" replace />} />
+            </Routes>
           </div>
         </div>
       </div>
+
       <div className="md:hidden p-4">
         <Routes>
-        <Route path="/analytics" element={<Overview />} />
-  <Route path="/User/:userid" element={<UserProfile />} />
-  <Route path="*" element={<Navigate to="/analytics" replace />}/>
-  </Routes>
-
+          <Route path="/analytics" element={<Overview />} />
+          <Route path="/User/:userid" element={<UserProfile />} />
+          <Route path="*" element={<Navigate to="/analytics" replace />} />
+        </Routes>
       </div>
 
       <div className="md:hidden">

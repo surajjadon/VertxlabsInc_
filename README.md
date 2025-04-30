@@ -41,7 +41,7 @@ If you're deploying this to **Vercel** and getting `404: NOT_FOUND` on page refr
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/surajjadon/Vertxlabs_Inc
+   git clone https://github.com/surajjadon/VertxlabsInc
    cd your-repo-name
 
 Install dependencies
